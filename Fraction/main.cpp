@@ -200,6 +200,6 @@ void main()
 	Fraction D = A / B;
 	D.print();*/
 
-	A *= B;
-	A.print();
+	/*A *= B;
+	A.print();*/
 }
