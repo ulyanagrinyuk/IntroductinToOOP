@@ -107,11 +107,11 @@ public:
 		return *this;
 	}
 
-	Point& operator <(const Point& other)
+	bool operator <(const Point& other)
 	{
 		this->x < other.x;
 		this->y < other.y;
-		return *this;
+		return this;
 	}
 
 	bool operator >(const Point& other)
@@ -207,15 +207,6 @@ Point operator *(const Point& left, const Point& right)
 	result.set_y(left.get_y() * right.get_y());
 	return result;
 }
-
-Point operator <(const Point& left, const Point& right)
-{
-	Point result;
-	result.set_x(left.get_x() * right.get_x());
-	result.set_y(left.get_y() * right.get_y());
-	return result;
-}
-
 
 //#define STRAK_POINT
 //#define DISTANCE_CHECK
