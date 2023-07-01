@@ -37,7 +37,7 @@ public:
 		this->y = 0;
 		cout << "1ArgConstructor:\t" << this << endl;
 	}*/
-	
+
 	Point(double x = 0, double y = 0)
 	{
 		this->x = x;
@@ -80,7 +80,7 @@ public:
 
 	Point operator++(int)
 	{
-		Point old = *this; 
+		Point old = *this;
 		x++;
 		y++;
 		return old;
@@ -105,6 +105,34 @@ public:
 		this->x += other.x;
 		this->y += other.y;
 		return *this;
+	}
+
+	Point& operator <(const Point& other)
+	{
+		this->x < other.x;
+		this->y < other.y;
+		return *this;
+	}
+
+	bool operator >(const Point& other)
+	{
+		this->x > other.x;
+		this->y > other.y;
+		return this;
+	}
+
+	bool operator ==(const Point& other)
+	{
+		this->x == other.x;
+		this->y == other.y;
+		return this;
+	}
+
+	bool operator !=(const Point& other)
+	{
+		this->x != other.x;
+		this->y != other.y;
+		return this;
 	}
 
 
@@ -173,6 +201,14 @@ Point operator/(const Point& left, const Point& right)
 }
 
 Point operator *(const Point& left, const Point& right)
+{
+	Point result;
+	result.set_x(left.get_x() * right.get_x());
+	result.set_y(left.get_y() * right.get_y());
+	return result;
+}
+
+Point operator <(const Point& left, const Point& right)
 {
 	Point result;
 	result.set_x(left.get_x() * right.get_x());
@@ -295,6 +331,5 @@ void main()
 	Point L = J * K;
 	L.print();
 
-	
 
 }

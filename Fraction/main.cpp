@@ -1,5 +1,11 @@
 #include<iostream>
 using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
+
+class Fraction;
+Fraction operator*(Fraction left, Fraction right);
 
 class Fraction
 {
@@ -91,8 +97,33 @@ public:
 		return *this;
 	}
 
-	//					Metods:
+	Fraction& operator *=(const Fraction& other)
+	{
+		return *this = *this * other;
+	}
 
+	//				     Metods:
+	Fraction& to_improper()
+	{
+		numerator += integer * denominator;
+		integer = 0;
+		return *this;
+	}	
+	Fraction& to_proper()
+	{
+		integer += numerator / denominator;
+		numerator %= denominator;
+		return *this;
+	}
+
+	Fraction inverted()const
+	{
+		Fraction inverted = *this;
+		inverted.to_improper();
+		std::swap(inverted.numerator, inverted.denominator);
+		return inverted;
+	}
+	
 	void print() const
 	{
 		if (integer)cout << integer;
@@ -106,6 +137,23 @@ public:
 		cout << endl;
 	}
 };
+
+Fraction operator*(Fraction left, Fraction right)
+{
+	left.to_improper();
+	right.to_improper();
+	return Fraction
+	(
+		left.get_numerator() * right.get_numerator(),
+		left.get_denominator() * right.get_denominator()
+	).to_proper();
+}
+
+Fraction operator/(const Fraction& left, const Fraction& right)
+{
+	return left * right.inverted();
+}
+
 
 //#define CONSTRUCTORS_CHECK
 
@@ -134,5 +182,24 @@ void main()
 	F.print();
 #endif // CONSTRUCTORS_CHECK
 
+	Fraction A(2, 3, 4);
+	A.print();
 
+	Fraction B(3, 4, 5);
+	B.print();
+
+	/*A.to_improper();
+	A.print();
+
+	A.to_proper();
+	A.print();*/
+
+	/*Fraction C = A * B;
+	C.print();
+
+	Fraction D = A / B;
+	D.print();*/
+
+	A *= B;
+	A.print();
 }
