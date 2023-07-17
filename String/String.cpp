@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-#include"String.h"
+#include"MyString.h"
 
 
 using std::cout;
