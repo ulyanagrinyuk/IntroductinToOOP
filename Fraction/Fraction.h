@@ -7,7 +7,7 @@ using std::endl;
 #define delimiter "\n------------------------------------\n"
 
 class Fraction; 
-//#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 Fraction operator*(Fraction left, Fraction right);
 
 class Fraction
